@@ -1,76 +1,380 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
+@layer base {
+  :root {
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(222.2, 84%, 4.9%);
+    --aside-text: hsl(236, 13%, 42%);
+    --aside-box: hsl(240, 100%, 5%);
+    --page-color: hsl(36, 100%, 99%);
+    --paragraph-color: hsl(233, 8%, 79%);
+    --aside-header: hsl(35, 77%, 62%);
+    --button-color: hsl(5, 85%, 63%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(222.2, 84%, 4.9%);
 
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(222.2, 84%, 4.9%);
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
+    --primary: hsl(222.2, 47.4%, 11.2%);
+    --primary-foreground: hsl(210, 40%, 98%);
 
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
+    --secondary: hsl(210, 40%, 96.1%);
+    --secondary-foreground: hsl(222.2, 47.4%, 11.2%);
 
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: hsl(210, 40%, 96.1%);
+    --muted-foreground: hsl(215.4, 16.3%, 46.9%);
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: hsl(210, 40%, 96.1%);
+    --accent-foreground: hsl(222.2, 47.4%, 11.2%);
 
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: hsl(0, 84.2%, 60.2%);
+    --destructive-foreground: hsl(210, 40%, 98%);
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
+    --border: hsl(214.3, 31.8%, 91.4%);
+    --input: hsl(214.3, 31.8%, 91.4%);
+    --ring: hsl(222.2, 84%, 4.9%);
 
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
-
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
-
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
-
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
-
-      --secondary: 217.2 32.6% 17.5%;
-      --secondary-foreground: 210 40% 98%;
-
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
-
-      --accent: 217.2 32.6% 17.5%;
-      --accent-foreground: 210 40% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
-
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 212.7 26.8% 83.9%;
-    }
+    --radius: 0.5rem;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  .dark {
+    --background: hsl(222.2, 84%, 4.9%);
+    --foreground: hsl(210, 40%, 98%);
+
+    --card: hsl(222.2, 84%, 4.9%);
+    --card-foreground: hsl(210, 40%, 98%);
+
+    --popover: hsl(222.2, 84%, 4.9%);
+    --popover-foreground: hsl(210, 40%, 98%);
+
+    --primary: hsl(210, 40%, 98%);
+    --primary-foreground: hsl(222.2, 47.4%, 11.2%);
+
+    --secondary: hsl(217.2, 32.6%, 17.5%);
+    --secondary-foreground: hsl(210, 40%, 98%);
+
+    --muted: hsl(217.2, 32.6%, 17.5%);
+    --muted-foreground: hsl(215, 20.2%, 65.1%);
+
+    --accent: hsl(217.2, 32.6%, 17.5%);
+    --accent-foreground: hsl(210, 40%, 98%);
+
+    --destructive: hsl(0, 62.8%, 30.6%);
+    --destructive-foreground: hsl(210, 40%, 98%);
+
+    --border: hsl(217.2, 32.6%, 17.5%);
+    --input: hsl(217.2, 32.6%, 17.5%);
+    --ring: hsl(212.7, 26.8%, 83.9%);
   }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+
+/* for the sidebar */
+.sidebar {
+  display: none;
+  position: fixed;
+  padding: 2rem 2rem;
+  left: 30%;
+  flex-direction: column;
+  justify-content: flex-start;
+  float: right;
+  width: 70%;
+  height: 100%;
+  background-color: white;
+  z-index: 1000;
+}
+.sidebar img {
+  width: 3rem;
+  margin-bottom: 40%;
+  align-self: flex-end;
+}
+
+.sidebar ul {
+  height: 23rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar ul > li > a {
+  color: #fff;
+  font-weight: 500;
+}
+/* .container * {
+  border: 2px solid red;
+} */
+/* content - navbar */
+/* main {
+  grid-area: main;
+  display: grid;
+  grid-template-rows: 0.9fr 0.1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  grid-template-areas:
+  "featured"
+  "aside"
+  "article";
+} */
+
+nav {
+  grid-area: navigation;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* For the sidebar */
+.hamburger {
+  display: none;
+}
+ul {
+  width: 40%;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+/* Active States */
+li > a:hover {
+  color: var(--button-color);
+}
+p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+ul > li > a {
+  color: var(--aside-text);
+}
+
+/* For the featured section */
+.featured {
+  grid-area: featured;
+  display: grid;
+  gap: 2rem;
+
+  grid-template-rows: 1fr 0.8fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "image image"
+    "image-text text";
+}
+
+.featured-img {
+  grid-area: image;
+  width: 100%;
+  height: 100%;
+  /* object-position: 15%; */
+  object-fit: cover;
+}
+.featured-text {
+  display: block;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  grid-area: image-text;
+  font-size: 4rem;
+  font-weight: 800;
+  width: 100%;
+}
+
+/* For the paragraph text with a button  */
+.cta {
+  grid-area: text;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+.cta p {
+  color: var(--aside-text);
+  line-height: 3rem;
+}
+.cta a {
+  display: inline-block;
+  text-transform: uppercase;
+  color: var(--page-color);
+  width: 20rem;
+  height: 5rem;
+  margin-top: 3.6rem;
+  text-align: center;
+  padding: 1.5rem;
+  letter-spacing: 0.6rem;
+  font-weight: 700;
+  border: none;
+  background-color: var(--button-color);
+}
+
+/* Active States */
+.cta a:hover {
+  background-color: var(--aside-box);
+}
+
+/* for the side content */
+aside {
+  height: 92%;
+  grid-area: aside;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2.5rem;
+  background-color: var(--aside-box);
+  color: var(--aside-text);
+}
+aside h1 {
+  color: var(--aside-header);
+  font-size: 4rem;
+}
+aside div:not(:last-child) {
+  border-bottom: 0.1rem solid var(--paragraph-color);
+  padding-bottom: 2rem;
+}
+aside div h2 {
+  color: var(--page-color);
+}
+aside div h2:hover {
+  color: var(--aside-header);
+}
+aside div p {
+  padding: 1rem 1rem 0 0;
+}
+
+/* for the bottom article preview  */
+.article-container {
+  width: 100%;
+  height: 55%;
+  justify-content: space-between;
+  grid-area: article;
+  display: flex;
+}
+
+.article-container > div {
+  width: 31%;
+  height: 100%;
+  display: flex;
+}
+.article-text {
+  margin-left: 1rem;
+  height: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.article-text h1 {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  color: var(--paragraph-color);
+}
+.article-text h3 {
+  margin: 0.5rem 0;
+}
+.article-text h3:hover {
+  color: var(--button-color);
+}
+.article-text p {
+  width: 100%;
+  color: var(--aside-text);
+}
+@media screen and (max-width: 48rem) {
+  nav ul {
+    display: none;
+  }
+  /* Displaying hamburger when the width is less than or equal to 375px or 37.5rem */
+  .hamburger {
+    display: block;
+  }
+  .sidebar {
+    font-size: 1.8rem;
+  }
+  /* Container Layout */
+  .container {
+    grid-template-rows: 0.04fr 1fr;
+    padding: 0 1.5rem;
+  }
+  /* Mobile Layout */
+  main {
+    grid-template-rows: 1fr 0.8fr 0.6fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "featured"
+      "aside"
+      "article";
+  }
+  /* Increasing font size for the aside content and the (paragraph with the text) */
+  .cta p,
+  aside > div > p {
+    font-size: 2rem;
+  }
+  /* Changing layout on the hero text, paragraph and btn */
+  .featured {
+    grid-template-rows: 0.85fr 0.3fr 0.1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "image-text"
+      "text";
+  }
+  /* .featured-img{
+    height: 80%;
+  } */
+  .featured-text {
+    font-size: 2.5rem;
+    width: 80%;
+    font-weight: 800;
+  }
+  .cta {
+    padding: 0;
+  }
+  aside div:not(:last-child) {
+    border-bottom: 0.1rem solid var(--paragraph-color);
+    padding-bottom: 4rem;
+  }
+  .article-container {
+    flex-direction: column;
+  }
+  /* Reducing font size on the mobile layout */
+  .article-text > h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  /* So that the article will span the width of the device */
+  .article-container > div {
+    width: 100%;
+    height: 28%;
+    margin-top: 4rem;
+  }
+  .article-text {
+    margin-left: 2rem;
+  }
+  .article-text h3 {
+    font-weight: 700;
+    /* font-size: 1.8rem; */
+    margin: 0;
+  }
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
